@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GHOSTFACE — Support</title>
+<meta name="description" content="Help with GHOSTFACE — encrypted messaging, calls, aliases, and account recovery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#08080B;
+    --gold:#D4AF37;
+    --gold-deep:#8C6D1F;
+    --gold-pale:#F2DFA0;
+    --dim:#8B8B96;
+    --rule:rgba(212,175,55,.18);
+    --danger:#FF6B6B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    background:var(--void);
+    color:#D8D8DE;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    padding:0 24px 96px;
+    background-image:radial-gradient(ellipse 90% 50% at 50% 0%, rgba(212,175,55,.05), transparent 70%);
+    min-height:100vh;
+  }
+  .wrap{max-width:720px;margin:0 auto}
+
+  header{padding:56px 0 34px;text-align:center}
+  header a.home{
+    display:inline-block;font-family:'Michroma',sans-serif;font-size:13px;
+    letter-spacing:.5em;margin-right:-.5em;color:var(--gold-pale);text-decoration:none;
+  }
+  header a.home:hover{color:var(--gold)}
+  .divider{width:44px;height:1px;margin:14px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  header .kicker{font-size:9px;letter-spacing:.4em;margin-right:-.4em;color:var(--dim);text-transform:uppercase}
+
+  h1{
+    font-family:'Michroma',sans-serif;font-size:clamp(17px,4.4vw,23px);
+    letter-spacing:.16em;margin:36px 0 22px;
+    background:linear-gradient(180deg,var(--gold-pale),var(--gold) 65%,var(--gold-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  h2{
+    font-family:'Michroma',sans-serif;font-size:12px;letter-spacing:.22em;
+    color:var(--gold-pale);text-transform:uppercase;
+    margin:42px 0 14px;padding-top:22px;border-top:1px solid var(--rule);
+  }
+  p{margin:0 0 14px}
+  ul{margin:0 0 16px;padding-left:20px}
+  li{margin-bottom:8px}
+  strong{color:var(--gold-pale);font-weight:500}
+  a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--rule)}
+  a:hover{border-bottom-color:var(--gold)}
+
+  .contact{
+    border:1px solid var(--rule);border-radius:6px;padding:22px;margin:0 0 8px;
+    background:rgba(212,175,55,.04);text-align:center;
+  }
+  .contact .addr{
+    display:inline-block;font-family:'Michroma',sans-serif;font-size:clamp(11px,3.1vw,14px);
+    letter-spacing:.1em;margin:6px 0 8px;color:var(--gold);border:none;
+  }
+  .contact .meta{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+  details{
+    border-bottom:1px solid rgba(255,255,255,.07);
+  }
+  details summary{
+    cursor:pointer;list-style:none;padding:15px 28px 15px 0;position:relative;
+    color:var(--gold-pale);font-weight:400;font-size:15px;
+  }
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{
+    content:"+";position:absolute;right:4px;top:14px;color:var(--gold-deep);
+    font-size:17px;transition:transform .2s,color .2s;
+  }
+  details[open] summary::after{content:"−";color:var(--gold)}
+  details summary:hover{color:var(--gold)}
+  details .body{padding:0 0 18px}
+  details .body p:last-child,details .body ul:last-child{margin-bottom:0}
+
+  .warn{
+    border-left:2px solid var(--danger);padding:2px 0 2px 14px;margin:0 0 14px;
+    color:#E8C9C9;
+  }
+  .warn strong{color:var(--danger)}
+
+  footer{
+    margin-top:64px;padding-top:26px;border-top:1px solid var(--rule);
+    text-align:center;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#3C3C46;
+  }
+  footer nav{display:flex;justify-content:center;gap:12px;margin-bottom:10px}
+  footer nav a{color:var(--dim);font-size:10px;letter-spacing:.22em;border:none;padding:6px 2px}
+  footer nav a:hover{color:var(--gold)}
+  footer i{color:var(--gold-deep);font-style:normal}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="home" href="/">GHOSTFACE</a>
+    <div class="divider"></div>
+    <div class="kicker">Secure Identity</div>
+  </header>
+
+  <h1>Support</h1>
+
+  <div class="contact">
+    <div class="meta">Get in touch</div>
+    <a class="addr" href="mailto:support@ghostface.co.nz">support@ghostface.co.nz</a>
+    <div class="meta">Ghostface Limited — New Zealand</div>
+  </div>
+  <!-- TODO: add a target response time here once you know what you can commit to
+       (e.g. "We aim to reply within two business days"). Better to say nothing
+       than to publish a promise the inbox can't keep. -->
+
+  <h2>Before you write in</h2>
+  <p>Because of how GHOSTFACE is built, there are some things support genuinely
+  cannot do. It's worth knowing which is which:</p>
+  <ul>
+    <li>We <strong>cannot</strong> read, recover or reset your messages — they're
+      encrypted with keys only your device holds.</li>
+    <li>We <strong>cannot</strong> recover a lost recovery phrase, PIN, or wallet.</li>
+    <li>We <strong>can</strong> help with account, alias, subscription and app
+      behaviour questions, and we want to hear about bugs.</li>
+  </ul>
+
+  <h2>Common questions</h2>
+
+  <details>
+    <summary>I lost my device. Can I get my messages back?</summary>
+    <div class="body">
+      <p>No. Message history lives only on your device, encrypted. There is no
+      server-side copy for us to restore, which is the same property that stops
+      anyone else from reading your messages.</p>
+      <p>If you saved your recovery phrase, you can restore your <em>identity</em>
+      on a new device — your alias and the ability to be reached — but not past
+      conversations.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What is a recovery phrase, and why does it matter so much?</summary>
+    <div class="body">
+      <p>It's a 24-word phrase that encodes a private key. GHOSTFACE uses separate
+      phrases for two different things — your <strong>identity</strong> and your
+      <strong>wallet</strong>. They are not interchangeable, and using the wrong
+      one won't work.</p>
+      <div class="warn">
+        <p><strong>Write them down offline.</strong> A phrase kept only in a
+        screenshot, a notes app or a cloud backup is as exposed as that service is.
+        Nobody at GHOSTFACE will ever ask you for a recovery phrase — anyone who
+        does is attacking you.</p>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>My messages disappeared on their own.</summary>
+    <div class="body">
+      <p>That's the disappearing-message timer working as intended. It's always on
+      and defaults to <strong>1 hour</strong>. You can change it per conversation
+      to anything between 5 seconds and 7 days.</p>
+      <p>Both sides of a conversation see the same timer, and expiry happens on
+      both devices.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Someone can't find my alias.</summary>
+    <div class="body">
+      <p>Aliases are 3–20 characters and may contain only letters, digits and
+      underscores. They're matched exactly, so check for a typo, and note that
+      aliases which look similar are not treated as the same.</p>
+      <p>The other person also needs to have registered before you can start an
+      encrypted conversation with them.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Calls aren't connecting, or notifications aren't arriving.</summary>
+    <div class="body">
+      <p>Worth checking, in order:</p>
+      <ul>
+        <li>Notifications are enabled for GHOSTFACE in your device settings</li>
+        <li>The app has microphone permission (and camera, for video calls)</li>
+        <li>You're not on a network that blocks peer-to-peer connections — some
+          corporate and public Wi-Fi does</li>
+        <li>Both devices are on a recent version of the app</li>
+      </ul>
+      <p>If it still fails, tell us your device model, OS version and roughly when
+      it happened.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Do I need to give a phone number or email?</summary>
+    <div class="body">
+      <p>No. You register with an alias you choose. We don't ask for your name,
+      phone number or email address, and we don't upload your contacts.</p>
+      <p>What we do hold is set out in the <a href="/privacy">privacy policy</a> —
+      it's a short list.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Is the wallet custodial? Can you recover it?</summary>
+    <div class="body">
+      <p>It's non-custodial. Keys are generated on your device and never sent to
+      us. We can't move your funds, freeze them, or restore them.</p>
+      <p>If you lose both your device and your wallet recovery phrase, the funds
+      are gone permanently. That's not a policy we can make an exception to — the
+      keys genuinely don't exist anywhere else.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>How do I cancel a subscription?</summary>
+    <div class="body">
+      <p>Subscriptions purchased through an app store are managed there — in your
+      Apple ID or Google Play account settings — not in the app.</p>
+      <!-- TODO: revise once the billing path is finalised. If subscriptions end up
+           running through Apple IAP / Play Billing this is correct as written; if
+           any plan is billed directly, add that route here too. -->
+    </div>
+  </details>
+
+  <details>
+    <summary>I want my data deleted.</summary>
+    <div class="body">
+      <p>Deleting the app removes everything held on your device. To have your
+      alias, public keys and push token removed from our servers, email us from
+      the app or write to
+      <a href="mailto:support@ghostface.co.nz">support@ghostface.co.nz</a> and tell
+      us the alias.</p>
+    </div>
+  </details>
+
+  <h2>Reporting a security issue</h2>
+  <p>If you believe you've found a vulnerability, please report it privately to
+  <a href="mailto:support@ghostface.co.nz">support@ghostface.co.nz</a> rather than
+  posting it publicly, and give us a reasonable window to fix it before disclosure.
+  Include enough detail to reproduce the issue.</p>
+  <!-- TODO: consider a dedicated security@ address and a published disclosure
+       policy / safe-harbour statement. Also consider a /.well-known/security.txt
+       once an address is settled. -->
+
+  <h2>Reporting abuse</h2>
+  <p>Report abuse to <a href="mailto:support@ghostface.co.nz">support@ghostface.co.nz</a>.
+  Please note we cannot see message content, so include whatever context you can —
+  the alias involved and what happened.</p>
+  <!-- TODO: legal/policy review. App Store review looks for a workable abuse
+       route on communication apps; decide what enforcement is actually possible
+       given the server holds no message content, and state it honestly. -->
+
+  <footer>
+    <nav>
+      <a href="/privacy">Privacy</a><i>·</i><a href="/support">Support</a><i>·</i><a href="mailto:support@ghostface.co.nz">Contact</a>
+    </nav>
+    <div>Ghostface Limited — New Zealand</div>
+  </footer>
+
+</div>
+</body>
+</html>
