@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GHOSTFACE — Invite</title>
+<meta name="description" content="You have been invited to GHOSTFACE.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#08080B;
+    --gold:#D4AF37;
+    --gold-deep:#8C6D1F;
+    --gold-pale:#F2DFA0;
+    --dim:#8B8B96;
+    --rule:rgba(212,175,55,.18);
+    --danger:#FF6B6B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    background:var(--void);
+    color:#D8D8DE;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    padding:0 24px 96px;
+    background-image:radial-gradient(ellipse 90% 50% at 50% 0%, rgba(212,175,55,.05), transparent 70%);
+    min-height:100vh;
+  }
+  .wrap{max-width:520px;margin:0 auto}
+
+  header{padding:56px 0 34px;text-align:center}
+  header a.home{
+    display:inline-block;font-family:'Michroma',sans-serif;font-size:13px;
+    letter-spacing:.5em;margin-right:-.5em;color:var(--gold-pale);text-decoration:none;
+  }
+  header a.home:hover{color:var(--gold)}
+  .divider{width:44px;height:1px;margin:14px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  header .kicker{font-size:9px;letter-spacing:.4em;margin-right:-.4em;color:var(--dim);text-transform:uppercase}
+
+  h1{
+    font-family:'Michroma',sans-serif;font-size:clamp(16px,4.2vw,21px);
+    letter-spacing:.16em;margin:30px 0 18px;text-align:center;
+    background:linear-gradient(180deg,var(--gold-pale),var(--gold) 65%,var(--gold-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  p{margin:0 0 14px}
+  .lede{text-align:center;color:var(--dim);font-size:14px;margin-bottom:28px}
+
+  .code-card{
+    border:1px solid var(--rule);border-radius:8px;padding:26px 18px 20px;
+    background:rgba(212,175,55,.04);text-align:center;margin:0 0 22px;
+  }
+  .code-label{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--dim);margin-bottom:12px}
+  .code{
+    font-family:'Michroma',sans-serif;
+    font-size:clamp(15px,5.4vw,22px);letter-spacing:.1em;color:var(--gold);
+    word-break:break-all;line-height:1.4;
+  }
+  .copy{
+    margin-top:16px;background:transparent;border:1px solid var(--rule);border-radius:5px;
+    color:var(--gold-pale);font-family:'Space Grotesk',sans-serif;font-size:11px;
+    letter-spacing:.22em;text-transform:uppercase;padding:10px 20px;cursor:pointer;
+    transition:border-color .2s,color .2s;
+  }
+  .copy:hover{border-color:var(--gold);color:var(--gold)}
+  .copy.done{border-color:var(--gold);color:var(--gold)}
+
+  .btn{
+    display:block;text-align:center;text-decoration:none;border-radius:6px;
+    font-family:'Michroma',sans-serif;letter-spacing:.14em;
+    padding:15px 18px;margin:0 0 12px;font-size:12px;
+  }
+  .btn.primary{
+    background:linear-gradient(180deg,var(--gold-pale),var(--gold) 60%,var(--gold-deep));
+    color:#0A0A0D;border:none;
+  }
+  .btn.secondary{
+    border:1px solid var(--rule);color:var(--gold-pale);
+  }
+  .btn.secondary:hover{border-color:var(--gold);color:var(--gold)}
+
+  .steps{
+    border-top:1px solid var(--rule);margin-top:34px;padding-top:22px;
+    font-size:13px;color:var(--dim);
+  }
+  .steps ol{padding-left:20px;margin:10px 0 0}
+  .steps li{margin-bottom:9px}
+  .steps strong{color:var(--gold-pale);font-weight:500}
+
+  .invalid{
+    border-left:2px solid var(--danger);padding:2px 0 2px 14px;margin:0 0 18px;color:#E8C9C9;
+  }
+  .invalid strong{color:var(--danger)}
+
+  footer{
+    margin-top:56px;padding-top:24px;border-top:1px solid var(--rule);
+    text-align:center;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#3C3C46;
+  }
+  footer nav{display:flex;justify-content:center;gap:12px;margin-bottom:10px}
+  footer nav a{color:var(--dim);font-size:10px;letter-spacing:.22em;text-decoration:none;padding:6px 2px}
+  footer nav a:hover{color:var(--gold)}
+  footer i{color:var(--gold-deep);font-style:normal}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="home" href="/">GHOSTFACE</a>
+    <div class="divider"></div>
+    <div class="kicker">Invitation</div>
+  </header>
+
+  <!-- Valid-code view -->
+  <div id="valid" class="hidden">
+    <h1>You've been invited</h1>
+    <p class="lede">Someone wants to talk to you on GHOSTFACE.</p>
+
+    <div class="code-card">
+      <div class="code-label">Invite code</div>
+      <div class="code" id="code"></div>
+      <button class="copy" id="copy" type="button">Copy code</button>
+    </div>
+
+    <a class="btn primary" id="open" href="#">Open in GHOSTFACE</a>
+    <a class="btn secondary" id="store" href="https://apps.apple.com/app/id6781518828">Get the app</a>
+
+    <div class="steps">
+      <strong>Don't have it yet?</strong>
+      <ol>
+        <li>Copy the code above.</li>
+        <li>Install GHOSTFACE and create your alias.</li>
+        <li>Paste the code when asked <strong>“Have an invite code?”</strong></li>
+      </ol>
+      <p style="margin-top:14px">The code stays on this page — come back and copy it
+      again if you need to.</p>
+    </div>
+  </div>
+
+  <!-- No/!invalid code view -->
+  <div id="invalid-view" class="hidden">
+    <h1>Invite not recognised</h1>
+    <div class="invalid">
+      <strong>That link doesn't contain a valid invite code.</strong>
+    </div>
+    <p>An invite code looks like <span style="color:var(--gold-pale)">GF-XXXX-XXXX</span>.
+    Ask whoever invited you to send the link again, or enter the code directly in
+    the app.</p>
+    <a class="btn secondary" href="https://apps.apple.com/app/id6781518828">Get the app</a>
+  </div>
+
+  <footer>
+    <nav>
+      <a href="/privacy">Privacy</a><i>·</i><a href="/support">Support</a><i>·</i><a href="mailto:support@ghostface.co.nz">Contact</a>
+    </nav>
+    <div>Ghostface Limited — New Zealand</div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  // Must match CODE_REGEX in artifacts/ghostface/lib/invites.ts and
+  // CODE_REGEX in artifacts/api-server/src/routes/invites.ts.
+  var CODE_RE = /^GF-[A-Z2-9]{4}-[A-Z2-9]{4}$/;
+
+  // Accept /i/<CODE> (via the vercel.json rewrite) or /i/?c=<CODE>.
+  function readCode() {
+    var q = new URLSearchParams(location.search).get('c');
+    if (q) return q.trim().toUpperCase();
+    var parts = location.pathname.split('/').filter(Boolean);
+    if (parts.length >= 2 && parts[0].toLowerCase() === 'i') {
+      return decodeURIComponent(parts[1]).trim().toUpperCase();
+    }
+    return '';
+  }
+
+  var code = readCode();
+  var ok = CODE_RE.test(code);
+
+  // This page deliberately does NOT call the API to resolve the code to an
+  // alias. GET /invites/:code is unauthenticated, and resolving codes here
+  // would turn a public web page into an enumeration oracle for the code
+  // space. Everything shown below is already known to whoever holds the link.
+  if (!ok) {
+    document.getElementById('invalid-view').classList.remove('hidden');
+    return;
+  }
+
+  document.getElementById('valid').classList.remove('hidden');
+  document.getElementById('code').textContent = code;
+  document.getElementById('open').href = 'ghostface://invite/' + encodeURIComponent(code);
+
+  var btn = document.getElementById('copy');
+  btn.addEventListener('click', function () {
+    var done = function () {
+      btn.textContent = 'Copied';
+      btn.classList.add('done');
+      setTimeout(function () {
+        btn.textContent = 'Copy code';
+        btn.classList.remove('done');
+      }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(done, fallback);
+    } else {
+      fallback();
+    }
+    function fallback() {
+      // Older iOS Safari, and any context where the async clipboard API is
+      // unavailable (e.g. a non-secure origin).
+      var ta = document.createElement('textarea');
+      ta.value = code;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'absolute';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) { /* leave the button as-is */ }
+      document.body.removeChild(ta);
+    }
+  });
+})();
+</script>
+</body>
+</html>
