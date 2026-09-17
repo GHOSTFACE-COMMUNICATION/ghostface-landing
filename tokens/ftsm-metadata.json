@@ -1,0 +1,16 @@
+{
+  "name": "FANTASMA",
+  "symbol": "FTSM",
+  "description": "A token issued by Ghostface Limited, a New Zealand company, alongside GHOSTFACE - a post-quantum end-to-end encrypted messaging and calling application.",
+  "image": "https://ghostface.co.nz/tokens/ftsm.png",
+  "external_url": "https://ghostface.co.nz",
+  "properties": {
+    "category": "image",
+    "files": [
+      {
+        "uri": "https://ghostface.co.nz/tokens/ftsm.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}
