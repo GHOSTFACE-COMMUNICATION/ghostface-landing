@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GHOSTFACE — Invite Card</title>
+<meta name="description" content="Someone wants to connect on GHOSTFACE.">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#08080B;
+    --gold:#D4AF37;
+    --gold-deep:#8C6D1F;
+    --gold-pale:#F2DFA0;
+    --dim:#8B8B96;
+    --rule:rgba(212,175,55,.18);
+    --danger:#FF6B6B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    background:var(--void);color:#D8D8DE;
+    font-family:'Space Grotesk',sans-serif;font-weight:300;line-height:1.7;
+    padding:0 16px 96px;min-height:100vh;
+    background-image:radial-gradient(ellipse 90% 50% at 50% 0%, rgba(212,175,55,.05), transparent 70%);
+  }
+  .wrap{max-width:520px;margin:0 auto}
+  header{padding:56px 0 30px;text-align:center}
+  header a.home{
+    display:inline-block;font-family:'Michroma',sans-serif;font-size:13px;
+    letter-spacing:.5em;margin-right:-.5em;color:var(--gold-pale);text-decoration:none;
+  }
+  .divider{width:44px;height:1px;margin:14px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  header .kicker{font-size:9px;letter-spacing:.4em;margin-right:-.4em;color:var(--dim);text-transform:uppercase}
+
+  /* The card — an object, not a form. Sized like a business card on desktop. */
+  .card{
+    position:relative;overflow:hidden;
+    border:1px solid var(--gold);border-radius:18px;padding:22px;
+    background:linear-gradient(145deg,#111014,#08080B 60%);
+    box-shadow:0 20px 60px rgba(0,0,0,.6), inset 0 1px 0 rgba(242,223,160,.08);
+    margin:0 0 22px;
+  }
+  .card.expired{border-color:var(--danger);opacity:.7}
+  .card::after{
+    content:"";position:absolute;inset:-40% -10% auto auto;width:60%;height:120%;
+    background:radial-gradient(closest-side,rgba(212,175,55,.08),transparent);pointer-events:none;
+  }
+  .head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+  .avatar{
+    width:44px;height:44px;border-radius:50%;flex:none;
+    display:flex;align-items:center;justify-content:center;
+    background:#1C1C1E;color:var(--gold);font-family:'Michroma',sans-serif;font-size:14px;
+  }
+  .name{font-family:'Michroma',sans-serif;font-size:16px;letter-spacing:.14em;color:var(--gold-pale)}
+  .tag{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:rgba(242,223,160,.5)}
+  .code{
+    font-family:'Michroma',sans-serif;font-size:clamp(15px,5vw,21px);
+    letter-spacing:.08em;color:var(--gold);word-break:break-all;line-height:1.4;
+  }
+  .meta{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,223,160,.6);margin-top:8px;font-variant-numeric:tabular-nums}
+  .meta.soon{color:var(--danger)}
+  .hint{font-style:italic;color:rgba(242,223,160,.8);font-size:13px;margin-top:12px}
+
+  .copy{
+    margin-top:14px;background:transparent;border:1px solid var(--rule);border-radius:5px;
+    color:var(--gold-pale);font-family:'Space Grotesk',sans-serif;font-size:11px;
+    letter-spacing:.22em;text-transform:uppercase;padding:10px 20px;cursor:pointer;
+  }
+  .copy:hover,.copy.done{border-color:var(--gold);color:var(--gold)}
+
+  .btn{
+    display:block;text-align:center;text-decoration:none;border-radius:6px;
+    font-family:'Michroma',sans-serif;letter-spacing:.14em;
+    padding:15px 18px;margin:0 0 12px;font-size:12px;
+  }
+  .btn.primary{background:linear-gradient(180deg,var(--gold-pale),var(--gold) 60%,var(--gold-deep));color:#0A0A0D}
+  .btn.secondary{border:1px solid var(--rule);color:var(--gold-pale)}
+  .btn.secondary:hover{border-color:var(--gold);color:var(--gold)}
+
+  .notes{border-top:1px solid var(--rule);margin-top:30px;padding-top:20px;font-size:13px;color:var(--dim)}
+  .notes ol{padding-left:20px;margin:10px 0 0}
+  .notes li{margin-bottom:9px}
+  .notes strong{color:var(--gold-pale);font-weight:500}
+  .invalid{border-left:2px solid var(--danger);padding:2px 0 2px 14px;margin:0 0 18px;color:#E8C9C9}
+  .invalid strong{color:var(--danger)}
+  h1{
+    font-family:'Michroma',sans-serif;font-size:clamp(16px,4.2vw,21px);
+    letter-spacing:.16em;margin:10px 0 18px;text-align:center;
+    background:linear-gradient(180deg,var(--gold-pale),var(--gold) 65%,var(--gold-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  footer{
+    margin-top:56px;padding-top:24px;border-top:1px solid var(--rule);
+    text-align:center;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#3C3C46;
+  }
+  footer nav{display:flex;justify-content:center;gap:12px;margin-bottom:10px}
+  footer nav a{color:var(--dim);font-size:10px;letter-spacing:.22em;text-decoration:none;padding:6px 2px}
+  footer i{color:var(--gold-deep);font-style:normal}
+  .hidden{display:none}
+  @media print{
+    body{background:#fff}
+    header,footer,.btn,.copy,.notes{display:none}
+    .card{box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="home" href="/">GHOSTFACE</a>
+    <div class="divider"></div>
+    <div class="kicker">Invite card</div>
+  </header>
+
+  <div id="valid" class="hidden">
+    <div class="card" id="card">
+      <div class="head">
+        <div class="avatar" id="avatar" aria-hidden="true">?</div>
+        <div>
+          <div class="name" id="name">A GHOST</div>
+          <div class="tag">wants to connect · ghostface</div>
+        </div>
+      </div>
+      <div class="code" id="code"></div>
+      <div class="meta" id="meta"></div>
+      <div class="hint">Ask them for the word.</div>
+      <button class="copy" id="copy" type="button">Copy code</button>
+    </div>
+
+    <a class="btn primary" id="open" href="#">Open in GHOSTFACE</a>
+    <a class="btn secondary" href="https://apps.apple.com/app/id6781518828">Get the app</a>
+
+    <div class="notes">
+      <strong>How this works</strong>
+      <ol>
+        <li>This card only works together with a <strong>word</strong>. The person who sent it will tell you the word separately.</li>
+        <li>Open the card in GHOSTFACE (or type the code under <strong>Messages → Invite → Open a card</strong>) and enter the word.</li>
+        <li>Five wrong words destroys the card. It also self-destructs when the timer runs out.</li>
+      </ol>
+      <p style="margin-top:14px">This page sends nothing anywhere: the code lives in the part of the
+      link after <strong>#</strong>, which your browser never transmits to any server, including ours.</p>
+    </div>
+  </div>
+
+  <div id="invalid-view" class="hidden">
+    <h1>Card not recognised</h1>
+    <div class="invalid"><strong>That link doesn't contain a valid invite card.</strong></div>
+    <p>A card code looks like <span style="color:var(--gold-pale)">GF-XXXX-XXXX-XXXX</span>.
+    Ask whoever sent it to make a new card.</p>
+    <a class="btn secondary" href="https://apps.apple.com/app/id6781518828">Get the app</a>
+  </div>
+
+  <footer>
+    <nav>
+      <a href="/privacy">Privacy</a><i>·</i><a href="/support">Support</a><i>·</i><a href="mailto:support@ghostface.co.nz">Contact</a>
+    </nav>
+    <div>Ghostface Limited — New Zealand</div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  // Must match CARD_CODE_REGEX and buildCardLink in
+  // ghostface-clean/artifacts/ghostface/lib/wordInvites.ts.
+  var CODE_RE = /^GF-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}$/;
+  var ALIAS_RE = /^[A-Z0-9_]{2,32}$/;
+
+  // Everything is read from the FRAGMENT, which the browser never sends to a
+  // server. Like /i, this page deliberately makes NO API call: it cannot tell
+  // whether a card is still live, and must not become an oracle for which
+  // codes exist. It also never asks for the word — that belongs in the app.
+  var p = new URLSearchParams(location.hash.slice(1));
+  var code = (p.get('c') || '').trim().toUpperCase();
+  var expiresAt = Number(p.get('x'));
+  var alias = (p.get('a') || '').trim().toUpperCase();
+
+  if (!CODE_RE.test(code) || !isFinite(expiresAt)) {
+    document.getElementById('invalid-view').classList.remove('hidden');
+    return;
+  }
+
+  // Drop the fragment from the address bar (and so from later copies of the
+  // URL), now that it has been read. It stays in this tab's memory only.
+  try { history.replaceState(null, '', location.pathname); } catch (e) { /* non-fatal */ }
+
+  document.getElementById('valid').classList.remove('hidden');
+  document.getElementById('code').textContent = code;
+
+  if (ALIAS_RE.test(alias)) {
+    document.getElementById('name').textContent = alias;
+    document.getElementById('avatar').textContent = alias.slice(0, 2);
+  }
+
+  // Deep link: the tab allow-list in the app passes "messages" with its query.
+  var cardLink = 'https://ghostface.co.nz/card#' + new URLSearchParams(
+    ALIAS_RE.test(alias) ? { c: code, x: String(expiresAt), a: alias } : { c: code, x: String(expiresAt) }
+  ).toString();
+  document.getElementById('open').href =
+    'ghostface://messages?card=' + encodeURIComponent(cardLink);
+
+  var meta = document.getElementById('meta');
+  var cardEl = document.getElementById('card');
+  function tick() {
+    var ms = expiresAt - Date.now();
+    if (ms <= 0) {
+      meta.textContent = 'Destroyed';
+      meta.classList.add('soon');
+      cardEl.classList.add('expired');
+      document.getElementById('open').classList.add('hidden');
+      return;
+    }
+    var s = Math.floor(ms / 1000);
+    meta.textContent = 'Self-destructs ' +
+      String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+    meta.classList.toggle('soon', ms < 60000);
+    setTimeout(tick, 1000);
+  }
+  tick();
+
+  var btn = document.getElementById('copy');
+  btn.addEventListener('click', function () {
+    function done() {
+      btn.textContent = 'Copied';
+      btn.classList.add('done');
+      setTimeout(function () { btn.textContent = 'Copy code'; btn.classList.remove('done'); }, 2000);
+    }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = code; ta.setAttribute('readonly', '');
+      ta.style.position = 'absolute'; ta.style.left = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) { /* leave as-is */ }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(done, fallback);
+    } else { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>
