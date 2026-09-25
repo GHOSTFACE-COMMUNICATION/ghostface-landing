@@ -20,19 +20,28 @@ base64, so the page has no other external requests.
 
 ## Deploying
 
-**GitHub Pages**, served from `main` at the repo root. Pushing to `main`
-rebuilds the site — there is no build step, Pages just serves `index.html`.
+**Vercel** — project `ghostface-landing`, team `ghostfacecommunications`.
+The domain's A records (`216.150.16.1`, `216.150.1.1`) point at Vercel.
 
-The `CNAME` file pins the custom domain to `ghostface.co.nz`. Don't delete
-it: Pages rewrites its domain config from that file on every build.
+⚠️ **Merging to `main` does NOT deploy** (verified 24–25 Sep 2026: merged
+pages stayed 404 for 5+ minutes while `server: Vercel` served a copy ~21 h
+old). The Vercel project's Git connection most likely still points at the
+repo that existed before it was recreated under the organisation — the same
+failure Railway had. Until the Git connection is re-linked in the Vercel
+dashboard, deploy by hand from a CLEAN export of `main` (never the working
+folder — it holds untracked `index.html.bak-*` files that would go public):
 
-> **Historical note.** A Vercel project (`ghostface-landing`, team
-> `ghostfacecommunications`) also served this domain and was the live host
-> until the switch to Pages. If the site ever reverts to an old design
-> unexpectedly, check which of the two DNS is pointing at before debugging
-> the HTML — three near-identical versions of this page existed at one
-> point, and the wrong host serving a stale copy looks exactly like a
-> caching bug.
+```sh
+D=$(mktemp -d) && git archive main | tar -x -C "$D" \
+  && mkdir -p "$D/.vercel" && cp .vercel/project.json "$D/.vercel/" \
+  && (cd "$D" && npx vercel deploy --prod --yes)
+```
+
+Then verify from outside, e.g. `curl -sI https://ghostface.co.nz/privacy`.
+
+GitHub Pages is **not** configured on this repo (the API returns 404); an
+older version of this README said it was. The `CNAME` file is left over
+from that setup and is harmless.
 
 ## Local development
 
