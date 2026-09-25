@@ -93,15 +93,18 @@
   </header>
 
   <h1>Privacy Policy</h1>
-  <!-- TODO: confirm the effective date before publishing. -->
-  <div class="updated">Effective 22 August 2026</div>
+  <div class="updated">Effective 22 August 2026 · Updated 24 September 2026</div>
 
   <div class="lede">
     <p><strong>The short version.</strong> GHOSTFACE is built so that we hold as
     little about you as possible. We don't ask for your name, phone number or
-    email address. Your messages and calls are end-to-end encrypted — we cannot
-    read them, and neither can anyone who compromises our servers. Your
+    email address. Your in-app messages and calls are end-to-end encrypted — we
+    cannot read them, and neither can anyone who compromises our servers. Your
     conversations, contacts and call history live on your device, not ours.</p>
+    <p>The one exception is the optional <strong>Ghost Number</strong> feature:
+    ordinary SMS text messages travel through the phone network, so they are
+    <strong>not</strong> end-to-end encrypted and we can read them. Section 3
+    says exactly what that involves.</p>
     <p>This page explains exactly what does reach us, and why.</p>
   </div>
 
@@ -116,8 +119,10 @@
   <ul>
     <li><strong>No real name.</strong> You register with an alias of your choosing.</li>
     <li><strong>No phone number and no email address</strong> are required to create an account or to use the app.</li>
-    <li><strong>No message content.</strong> Messages, voice notes, media and calls
-      are end-to-end encrypted on your device. We relay ciphertext we cannot decrypt.</li>
+    <li><strong>No in-app message content.</strong> Messages, voice notes, photos,
+      files and calls inside GHOSTFACE are end-to-end encrypted on your device. We
+      relay and briefly store ciphertext we cannot decrypt. (SMS sent through the
+      optional Ghost Number feature are different — see section 3.)</li>
     <li><strong>No contact list upload.</strong> Your contacts are stored on your device
       and are never sent to us.</li>
     <li><strong>No advertising, no ad networks, no selling of data.</strong> We do not sell,
@@ -125,7 +130,8 @@
   </ul>
 
   <h2>3. What we do hold</h2>
-  <p>The service cannot function without a small amount of data. This is the whole of it:</p>
+  <p>The service cannot function without a small amount of data. This is the whole of
+  it. Rows marked <em>optional</em> exist only if you use that feature.</p>
 
   <div class="scroller">
   <table>
@@ -155,18 +161,72 @@
         <td>Queued&nbsp;messages</td>
         <td>Holding a message until your device comes online</td>
         <td>Stored as encrypted payload addressed to a delivery ID, with a
-            delivered flag and a timestamp. We cannot read the contents.</td>
+            delivered flag and a timestamp. We cannot read the contents. Delivered
+            messages are removed within about an hour; undelivered ones after 7 days.</td>
       </tr>
       <tr>
-        <td>Push&nbsp;token</td>
+        <td>Encrypted&nbsp;attachments</td>
+        <td>Delivering photos, files and voice notes</td>
+        <td>Stored as encrypted files named by a random ID. The key travels only
+            inside your end-to-end-encrypted message, so we cannot read them — and
+            no account is recorded against them. They do not yet expire automatically.</td>
+      </tr>
+      <tr>
+        <td>Push&nbsp;tokens</td>
         <td>Waking your device for a new message or call</td>
-        <td>Stored as a <strong>hash</strong>, not the raw token.</td>
+        <td>The tokens Apple or Google issue for your device, stored as issued
+            because they are needed to send the wake-up. The notification carries no
+            message content. (Your device's separate sign-in token is stored only as
+            a hash.)</td>
       </tr>
       <tr>
-        <td>Subscription&nbsp;status</td>
+        <td>Invite&nbsp;codes</td>
+        <td>Letting someone you invite connect to you</td>
+        <td>Classic invite codes record your alias as the owner until they expire.
+            Word-bound invite cards store only one-way hashes of the code — never
+            the code or the word — and expire within 24 hours.</td>
+      </tr>
+      <tr>
+        <td>Plan and payment records</td>
         <td>Unlocking paid features</td>
-        <td>Which plan is active. Card details are handled by our payment
-            provider and never reach us.</td>
+        <td>Which plan is active, and for each payment: your alias, the plan, the
+            USDC amount, and the Solana transaction it was paid in. Payments are made
+            on the public Solana blockchain; we never see card details.
+            <strong>Payment records are kept as financial records</strong>, including
+            after an account is deleted.</td>
+      </tr>
+      <tr>
+        <td>Wallet&nbsp;address <em>(optional)</em></td>
+        <td>Letting other users pay you</td>
+        <td>Only if you publish it. Public on the blockchain by nature. Removed
+            from our servers when you delete your account, or on request.</td>
+      </tr>
+      <tr>
+        <td>Ghost&nbsp;Number <em>(optional)</em></td>
+        <td>Sending and receiving SMS through a number we provide</td>
+        <td>The real phone numbers you exchange SMS with, and the <strong>text of
+            those SMS messages, which we can read</strong> — SMS are not end-to-end
+            encrypted. Delivered to and from the phone network by our SMS provider,
+            Vonage. Deleted when you delete your account.</td>
+      </tr>
+      <tr>
+        <td>Unknown-sender replies <em>(Ghost Number)</em></td>
+        <td>Replying once to someone who texts a number nobody is using</td>
+        <td>That sender's phone number and the pool number they texted, so we reply
+            only once. This concerns outside senders, not your account.</td>
+      </tr>
+      <tr>
+        <td>VPN&nbsp;registration <em>(optional)</em></td>
+        <td>Connecting you to the GHOSTFACE VPN</td>
+        <td>Your VPN public key and assigned tunnel address. The VPN is not
+            available in current versions of the app.</td>
+      </tr>
+      <tr>
+        <td>Device&nbsp;integrity check <em>(Android)</em></td>
+        <td>Protecting the service from automated abuse</td>
+        <td>A Google Play Integrity token, sent to Google to confirm the app is
+            genuine. We do not store it. If a check fails, our server log records
+            your alias and Google's verdict.</td>
       </tr>
     </tbody>
   </table>
@@ -213,23 +273,27 @@
 
   <h2>8. Others who process data for us</h2>
   <ul>
-    <li><strong>Hosting</strong> — our servers and database run on cloud infrastructure.</li>
-    <li><strong>Push notifications</strong> — Apple and Google deliver push messages
-      to your device. The notification itself carries no message content.</li>
-    <li><strong>Payments</strong> — subscription payments are processed by our payment
-      provider, who handles your card details directly. We receive confirmation of
-      payment, not your card number.</li>
+    <li><strong>Hosting</strong> — Railway runs our servers and database.</li>
+    <li><strong>Push notifications</strong> — Apple (APNs) and Google (Firebase Cloud
+      Messaging, via Expo's push service) deliver wake-up notifications to your
+      device. The notification itself carries no message content.</li>
+    <li><strong>SMS</strong> — Vonage carries Ghost Number text messages to and from
+      the phone network.</li>
+    <li><strong>Payments</strong> — plan payments are made in USDC on the public
+      Solana blockchain, which we query to confirm them. Buying cryptocurrency with
+      a card happens on MoonPay's own site, directly between you and MoonPay; we do
+      not receive your card details.</li>
+    <li><strong>Device integrity</strong> — on Android, Google Play Integrity
+      confirms the app is genuine.</li>
   </ul>
-  <!-- TODO: confirm whether the named providers (Railway, Expo/APNs/FCM, Stripe,
-       MoonPay) should be listed by name here. Naming processors is common and
-       often expected under GDPR; leaving them generic is also defensible. Legal
-       review should decide. -->
 
   <h2>9. Your choices</h2>
   <ul>
-    <li><strong>Delete your account.</strong> Deleting the app removes everything held
-      on your device. To remove your alias, public keys and push token from our
-      servers, contact us.</li>
+    <li><strong>Delete your account.</strong> Use <em>Settings → Danger Zone → WIPE
+      DEVICE</em> (press and hold) in the app: it deletes your data on the device and on our servers in one step.
+      What is deleted, what is kept, and how to ask us instead are set out on
+      <a href="/delete-account">ghostface.co.nz/delete-account</a>. Deleting the app
+      alone removes only what is on your device.</li>
     <li><strong>Notifications.</strong> Push notifications can be turned off in your
       device settings; the app continues to work while open.</li>
     <li><strong>Access and correction.</strong> You can ask what we hold about you and
