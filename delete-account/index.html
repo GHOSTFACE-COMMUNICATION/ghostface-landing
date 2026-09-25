@@ -93,7 +93,7 @@
   </header>
 
   <h1>Delete your account</h1>
-  <div class="updated">Updated 24 September 2026</div>
+  <div class="updated">Updated 25 September 2026</div>
 
   <div class="lede">
     <p><strong>The short version.</strong> Open GHOSTFACE and go to
@@ -125,8 +125,8 @@
     <li>Your active plan</li>
     <li>Messages waiting to be delivered to you, and notices addressed to you</li>
     <li>Invite codes you created</li>
-    <li>Your Ghost Number leases and the SMS messages stored for them, including the
-      phone numbers you exchanged SMS with</li>
+    <li>Your Ghost Number leases and the SMS messages and voicemails stored for them,
+      including the phone numbers you exchanged SMS or calls with</li>
     <li>Your VPN registration, if you had one</li>
   </ul>
   <p>Your alias becomes free for someone else to register.</p>
@@ -134,18 +134,24 @@
   <h2>3. What is kept, and why</h2>
   <ul>
     <li><strong>Payment records</strong> — for each plan payment: the alias, plan, USDC
-      amount and Solana transaction. Kept as financial records. The payments themselves
-      are permanently public on the Solana blockchain in any case.</li>
+      amount and Solana transaction. Kept for seven years as financial records, then
+      deleted. Records of payments between users are deleted 30 days after the
+      payment. The payments themselves are permanently public on the Solana
+      blockchain in any case.</li>
     <li><strong>A free-trial marker</strong> — a note that the alias has already used its
       one free trial, so deleting and re-registering cannot repeat it.</li>
     <li><strong>Encrypted attachments</strong> — photos, files and voice notes are stored
       as encrypted files named by a random ID, with no account recorded against them, so
       they cannot be found by account. We cannot read them: the key existed only inside
-      your end-to-end-encrypted messages.</li>
+      your end-to-end-encrypted messages. They are deleted 30 days after upload.</li>
     <li><strong>A "you have left" notice to your contacts</strong> — so the people you
-      talked to learn the conversation has ended.</li>
-    <li><strong>Server logs</strong> — kept by our hosting provider in the ordinary
-      course of running the service.</li>
+      talked to learn the conversation has ended. It is sent end-to-end encrypted,
+      like a message: we cannot read it or see who sent it, and it is held only until
+      delivered, for at most 7 days. Your contact list is not sent to us.</li>
+    <li><strong>Request records</strong> — our own logs do not contain your alias, but
+      our hosting provider, Railway, records each request to our servers (the address
+      requested, the IP address and the app version) and keeps those records for
+      30 days.</li>
   </ul>
 
   <h2>4. Ask us instead</h2>
