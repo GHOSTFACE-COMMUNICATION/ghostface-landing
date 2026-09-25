@@ -93,7 +93,7 @@
   </header>
 
   <h1>Privacy Policy</h1>
-  <div class="updated">Effective 22 August 2026 · Updated 24 September 2026</div>
+  <div class="updated">Effective 22 August 2026 · Updated 25 September 2026</div>
 
   <div class="lede">
     <p><strong>The short version.</strong> GHOSTFACE is built so that we hold as
@@ -169,7 +169,7 @@
         <td>Delivering photos, files and voice notes</td>
         <td>Stored as encrypted files named by a random ID. The key travels only
             inside your end-to-end-encrypted message, so we cannot read them — and
-            no account is recorded against them. They do not yet expire automatically.</td>
+            no account is recorded against them. They are deleted after 30 days.</td>
       </tr>
       <tr>
         <td>Push&nbsp;tokens</td>
@@ -182,18 +182,23 @@
       <tr>
         <td>Invite&nbsp;codes</td>
         <td>Letting someone you invite connect to you</td>
-        <td>Classic invite codes record your alias as the owner until they expire.
-            Word-bound invite cards store only one-way hashes of the code — never
-            the code or the word — and expire within 24 hours.</td>
+        <td>Classic invite codes record your alias as the owner. They last at most
+            7 days and are deleted a day after they expire or are used. Word-bound
+            invite cards store only one-way hashes of the code — never the code or
+            the word — and expire within 24 hours.</td>
       </tr>
       <tr>
         <td>Plan and payment records</td>
         <td>Unlocking paid features</td>
-        <td>Which plan is active, and for each payment: your alias, the plan, the
-            USDC amount, and the Solana transaction it was paid in. Payments are made
-            on the public Solana blockchain; we never see card details.
-            <strong>Payment records are kept as financial records</strong>, including
-            after an account is deleted.</td>
+        <td>Which plan is active (deleted 30 days after it ends), and for each plan
+            payment: your alias, the plan, the USDC amount, and the Solana
+            transaction it was paid in. Payments are made on the public Solana
+            blockchain; we never see card details. <strong>Plan payment records are
+            kept for seven years as financial records</strong>, including after an
+            account is deleted. Payment requests that were never paid are deleted 30
+            days after they expire. Payments between users sent in the app are
+            recorded for 30 days, so the conversation can show whether they
+            arrived, then deleted.</td>
       </tr>
       <tr>
         <td>Wallet&nbsp;address <em>(optional)</em></td>
@@ -204,16 +209,21 @@
       <tr>
         <td>Ghost&nbsp;Number <em>(optional)</em></td>
         <td>Sending and receiving SMS through a number we provide</td>
-        <td>The real phone numbers you exchange SMS with, and the <strong>text of
-            those SMS messages, which we can read</strong> — SMS are not end-to-end
-            encrypted. Delivered to and from the phone network by our SMS provider,
-            Vonage. Deleted when you delete your account.</td>
+        <td>The real phone numbers you exchange SMS with, the <strong>text of those
+            SMS messages, which we can read</strong>, and <strong>voicemails</strong>
+            callers leave on the number — a recording of their voice, which we can
+            listen to, and their phone number. None of this is end-to-end encrypted:
+            it travels through the ordinary phone network via our provider, Vonage.
+            Texts and voicemails are deleted after 30 days, when you release the
+            number, or when you delete your account — whichever comes first. We
+            ask Vonage to delete each recording once we have received it.</td>
       </tr>
       <tr>
         <td>Unknown-sender replies <em>(Ghost Number)</em></td>
         <td>Replying once to someone who texts a number nobody is using</td>
         <td>That sender's phone number and the pool number they texted, so we reply
-            only once. This concerns outside senders, not your account.</td>
+            only once. Kept for 90 days. This concerns outside senders, not your
+            account.</td>
       </tr>
       <tr>
         <td>VPN&nbsp;registration <em>(optional)</em></td>
@@ -226,18 +236,19 @@
         <td>Protecting the service from automated abuse</td>
         <td>A Google Play Integrity token, sent to Google to confirm the app is
             genuine. We do not store it. If a check fails, our server log records
-            your alias and Google's verdict.</td>
+            Google's verdict, not your alias.</td>
       </tr>
     </tbody>
   </table>
   </div>
 
-  <p>Server logs and infrastructure metrics are produced by our hosting provider in
-  the ordinary course of running the service.
-  <!-- TODO: confirm log retention period and whether IP addresses are retained in
-       Railway/application logs, then state it plainly here. Do not publish a
-       specific retention claim until it has been verified against the actual
-       hosting configuration. --></p>
+  <p><strong>Logs.</strong> Our own server logs are built so that they do not
+  contain aliases, phone numbers, IP addresses, invite codes or message content —
+  they record that things happened (counts, errors, timings), not who did them.
+  Separately, our hosting provider, Railway, records each request that reaches
+  our servers — the address requested, the IP address it came from and the app
+  version — and keeps those records for 30 days. Some requested addresses
+  currently include an alias; we are removing them.</p>
 
   <h2>4. What stays on your device</h2>
   <p>These never reach our servers at all. They are stored in encrypted storage on
