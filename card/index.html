@@ -217,9 +217,24 @@
   // whether a card is still live, and must not become an oracle for which
   // codes exist. It also never asks for the word — that belongs in the app.
   var p = new URLSearchParams(location.hash.slice(1));
-  var code = (p.get('c') || '').trim().toUpperCase();
-  var expiresAt = Number(p.get('x'));
-  var alias = (p.get('a') || '').trim().toUpperCase();
+  var code = '', expiresAt = NaN, alias = '';
+  // Since 28 Sep 2026 the app sends one opaque token (#k=base64url("code|exp|alias"))
+  // so the code is not in plain view in the message that carries the link. The
+  // earlier readable form (#c=&x=&a=) is still accepted for cards in flight.
+  var k = p.get('k');
+  if (k) {
+    try {
+      var b = k.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((k.length + 3) % 4);
+      var parts = decodeURIComponent(escape(atob(b))).split('|');
+      code = (parts[0] || '').trim().toUpperCase();
+      expiresAt = Number(parts[1]);
+      alias = (parts[2] || '').trim().toUpperCase();
+    } catch (e) { /* falls through to the invalid view */ }
+  } else {
+    code = (p.get('c') || '').trim().toUpperCase();
+    expiresAt = Number(p.get('x'));
+    alias = (p.get('a') || '').trim().toUpperCase();
+  }
 
   if (!CODE_RE.test(code) || !isFinite(expiresAt)) {
     document.getElementById('invalid-view').classList.remove('hidden');
@@ -239,6 +254,10 @@
 
   var scene = document.getElementById('scene');
   var hint = document.getElementById('fliphint');
+  // The card arrives face down — the hood up, nothing to read — the same way
+  // it arrives in the app. Tap turns it over to the key side.
+  scene.classList.add('front-up');
+  hint.textContent = 'Tap for the key';
   function flip() {
     var up = scene.classList.toggle('front-up');
     hint.textContent = up ? 'Tap for the key' : 'Tap to flip';
@@ -249,9 +268,10 @@
   });
 
   // Deep link: the tab allow-list in the app passes "messages" with its query.
-  var cardLink = 'https://ghostface.co.nz/card#' + new URLSearchParams(
-    ALIAS_RE.test(alias) ? { c: code, x: String(expiresAt), a: alias } : { c: code, x: String(expiresAt) }
-  ).toString();
+  // Same opaque token form the app builds (lib/wordInvites.ts buildCardLink).
+  var tokenSrc = [code, String(expiresAt), ALIAS_RE.test(alias) ? alias : ''].join('|');
+  var token = btoa(unescape(encodeURIComponent(tokenSrc))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  var cardLink = 'https://ghostface.co.nz/card#k=' + token;
   document.getElementById('open').href =
     'ghostface://messages?card=' + encodeURIComponent(cardLink);
 
