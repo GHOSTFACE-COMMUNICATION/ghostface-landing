@@ -1,0 +1,6 @@
+# GHOSTFACE security contact — RFC 9116
+Contact: mailto:security@ghostface.co.nz
+Expires: 2027-10-11T00:00:00.000Z
+Policy: https://ghostface.co.nz/security
+Preferred-Languages: en
+Canonical: https://ghostface.co.nz/.well-known/security.txt

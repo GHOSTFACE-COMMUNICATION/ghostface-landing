@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GHOSTFACE — Security</title>
+<meta name="description" content="How to report a security vulnerability in GHOSTFACE, and what we commit to in return.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#08080B;
+    --gold:#D4AF37;
+    --gold-deep:#8C6D1F;
+    --gold-pale:#F2DFA0;
+    --dim:#8B8B96;
+    --rule:rgba(212,175,55,.18);
+    --danger:#FF6B6B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    background:var(--void);
+    color:#D8D8DE;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    padding:0 24px 96px;
+    background-image:radial-gradient(ellipse 90% 50% at 50% 0%, rgba(212,175,55,.05), transparent 70%);
+    min-height:100vh;
+  }
+  .wrap{max-width:720px;margin:0 auto}
+
+  header{padding:56px 0 34px;text-align:center}
+  header a.home{
+    display:inline-block;font-family:'Michroma',sans-serif;font-size:13px;
+    letter-spacing:.5em;margin-right:-.5em;color:var(--gold-pale);text-decoration:none;
+  }
+  header a.home:hover{color:var(--gold)}
+  .divider{width:44px;height:1px;margin:14px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  header .kicker{font-size:9px;letter-spacing:.4em;margin-right:-.4em;color:var(--dim);text-transform:uppercase}
+
+  h1{
+    font-family:'Michroma',sans-serif;font-size:clamp(17px,4.4vw,23px);
+    letter-spacing:.16em;margin:36px 0 22px;
+    background:linear-gradient(180deg,var(--gold-pale),var(--gold) 65%,var(--gold-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  h2{
+    font-family:'Michroma',sans-serif;font-size:12px;letter-spacing:.22em;
+    color:var(--gold-pale);text-transform:uppercase;
+    margin:42px 0 14px;padding-top:22px;border-top:1px solid var(--rule);
+  }
+  p{margin:0 0 14px}
+  ul{margin:0 0 16px;padding-left:20px}
+  li{margin-bottom:8px}
+  strong{color:var(--gold-pale);font-weight:500}
+  a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--rule)}
+  a:hover{border-bottom-color:var(--gold)}
+
+  .contact{
+    border:1px solid var(--rule);border-radius:6px;padding:22px;margin:0 0 8px;
+    background:rgba(212,175,55,.04);text-align:center;
+  }
+  .contact .addr{
+    display:inline-block;font-family:'Michroma',sans-serif;font-size:clamp(11px,3.1vw,14px);
+    letter-spacing:.1em;margin:6px 0 8px;color:var(--gold);border:none;
+  }
+  .contact .meta{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+  details{
+    border-bottom:1px solid rgba(255,255,255,.07);
+  }
+  details summary{
+    cursor:pointer;list-style:none;padding:15px 28px 15px 0;position:relative;
+    color:var(--gold-pale);font-weight:400;font-size:15px;
+  }
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{
+    content:"+";position:absolute;right:4px;top:14px;color:var(--gold-deep);
+    font-size:17px;transition:transform .2s,color .2s;
+  }
+  details[open] summary::after{content:"−";color:var(--gold)}
+  details summary:hover{color:var(--gold)}
+  details .body{padding:0 0 18px}
+  details .body p:last-child,details .body ul:last-child{margin-bottom:0}
+
+  .warn{
+    border-left:2px solid var(--danger);padding:2px 0 2px 14px;margin:0 0 14px;
+    color:#E8C9C9;
+  }
+  .warn strong{color:var(--danger)}
+
+  footer{
+    margin-top:64px;padding-top:26px;border-top:1px solid var(--rule);
+    text-align:center;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#3C3C46;
+  }
+  footer nav{display:flex;justify-content:center;gap:12px;margin-bottom:10px}
+  footer nav a{color:var(--dim);font-size:10px;letter-spacing:.22em;border:none;padding:6px 2px}
+  footer nav a:hover{color:var(--gold)}
+  footer i{color:var(--gold-deep);font-style:normal}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="home" href="/">GHOSTFACE</a>
+    <div class="divider"></div>
+    <div class="kicker">Secure Identity</div>
+  </header>
+
+  <h1>Security</h1>
+
+  <div class="contact">
+    <div class="meta">Report a vulnerability</div>
+    <a class="addr" href="mailto:security@ghostface.co.nz">security@ghostface.co.nz</a>
+    <div class="meta">Ghostface Limited — New Zealand</div>
+  </div>
+
+  <h2>Reporting a vulnerability</h2>
+  <p>If you think you have found a security problem in GHOSTFACE, please email us
+  before telling anyone else. A useful report includes:</p>
+  <ul>
+    <li>what you found and why it matters: what an attacker could do;</li>
+    <li>the steps to reproduce it, and the app version, device and OS you used;</li>
+    <li>any proof-of-concept, kept to the minimum needed to show the issue;</li>
+    <li>whether, and how, you would like to be credited.</li>
+  </ul>
+  <p>Please don't include anyone else's personal data in a report.</p>
+
+  <h2>What's in scope</h2>
+  <ul>
+    <li>The GHOSTFACE apps for iOS and Android</li>
+    <li>Our API at <strong>api.ghostface.co.nz</strong></li>
+    <li>This website, <strong>ghostface.co.nz</strong></li>
+    <li>The cryptographic design: handshake, ratchet, call setup, invite cards</li>
+  </ul>
+  <p>Out of scope: denial-of-service, spam or volume testing; social engineering
+  of our staff or users; physical attacks on devices; and services we don't run,
+  such as app stores, push-notification services and our SMS provider (report
+  those to them).</p>
+
+  <h2>Please don't</h2>
+  <ul>
+    <li>access, change or delete data that isn't yours. Use your own test accounts;</li>
+    <li>disrupt the service for other people;</li>
+    <li>keep any data you came across beyond what you need to report the issue.</li>
+  </ul>
+
+  <h2>What we commit to</h2>
+  <ul>
+    <li>We'll acknowledge your report within <strong>three business days</strong>.</li>
+    <li>We'll keep you updated while we work on it, and tell you when it's fixed.</li>
+    <li>We'll credit you when we disclose it, if you'd like to be.</li>
+    <li>We ask for <strong>90 days</strong> to fix an issue before it's made public,
+      or less once a fix has shipped. We'll agree the timing with you.</li>
+  </ul>
+  <!-- COUNSEL: the paragraph below is a legal commitment. Confirm wording with
+       MinterEllison before this page goes live. -->
+  <p>We won't take legal action against research done in good faith that follows
+  this policy.</p>
+
+  <h2>Rewards</h2>
+  <p>We don't run a paid bug bounty yet. We do read every report, and we'll say so
+  here if that changes.</p>
+
+  <h2>Independent review</h2>
+  <p>An independent security review of the GHOSTFACE protocol and selected source
+  code by <strong>Cure53</strong> is in progress. We'll publish the report, with its
+  findings and our fixes.</p>
+
+  <footer>
+    <nav>
+      <a href="/privacy">Privacy</a><i>·</i><a href="/support">Support</a><i>·</i><a href="/security">Security</a>
+    </nav>
+    <div>Ghostface Limited — New Zealand</div>
+  </footer>
+
+</div>
+</body>
+</html>
